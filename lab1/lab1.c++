@@ -110,6 +110,22 @@ int main() {
     }
     Line(200, 205, 207, 188);
 
+  // ---------------- 9. Problema simpla (3 variabile) ----------------
+    cout << "\n\n\t9. Problema logica cu 3 variabile";
+    cout << "\n     F = (A && B) || !C";
+    nc = 4; w[0] = 3; w[1] = 3; w[2] = 3; w[3] = 5;
+    Line(201, 205, 209, 187);
+    printf("\n%c A %c B %c C %c  F  %c", 186, 179, 179, 179, 186);
+    Line(199, 196, 197, 182);
+    for (a = 0; a <= 1; a++) {
+        for (b = 0; b <= 1; b++) {
+            for (c = 0; c <= 1; c++) {
+                printf("\n%c %d %c %d %c %d %c  %d  %c", 186, a, 179, b, 179, c, 179, (a && b) || !c, 186);
+            }
+        }
+    }
+    Line(200, 205, 207, 188);
+ 
     // ---------------- 10. Problema generala (4 variabile) ----------------
     cout << "\n\n\t10. Problema logica cu 4 variabile";
     cout << "\n     F = (A || B) && (!C || D)";
@@ -127,6 +143,6 @@ int main() {
         }
     }
     Line(200, 205, 207, 188);
-
+ 
     return 0;
 }
