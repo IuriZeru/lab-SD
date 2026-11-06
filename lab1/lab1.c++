@@ -1,148 +1,169 @@
 #include <iostream>
-#include <cstdio>
+#include <stdio.h>
+#include <stdlib.h>
+
 using namespace std;
 
-int nc;      // numarul de coloane ale tabelului
-int w[5];    // latimea fiecarei coloane
+void Line(int lf, int lin, int mid, int rt, int operand = 2, int last = 10 )
+{
+    int i, j;
+    printf("\n%c", lf);
 
-void Set(int n, int a, int b, int c, int d) {
-    nc = n; w[0] = a; w[1] = b; w[2] = c; w[3] = d;
+    for (j=1; j<=operand; j++)
+    {
+        for(i=1; i<=3; i++) printf("%c", lin);
+        printf("%c", mid);
+    }
+
+    for(i=1; i<=last; i++) printf("%c", lin);
+    printf("%c", rt);
 }
 
-// Line(stanga, umplere, mijloc, dreapta)
-void Line(int st, int um, int mj, int dr) {
-    printf("\n%c", st);
-    for (int i = 0; i < nc; i++) {
-        for (int k = 0; k < w[i]; k++) printf("%c", um);
-        printf("%c", i < nc - 1 ? mj : dr);
+void OperatiiBinare(int key)
+{
+    unsigned a,b, rez;
+    cout <<"\n\t" << key << "." ;
+    switch(key){
+        case 2: cout << "Conjuctia" << endl; break;
+        case 3: cout << "Disjuctia" << endl; break;
+        case 4: cout << "Diferenta" << endl; break;
+        case 5: cout << "Implicatia" << endl; break;
+        case 6: cout << "Echivalenta" << endl; break;
+        case 7: cout << "Conectorul Sheffer" << endl; break;
+        case 8: cout << "Conectorul Pirce" << endl; break;
     }
-}
 
-int main() {
-    int a, b, c, d;
+    Line(201,205,209,187);
+    switch(key){
 
-    // ---------------- 1. Negatia ----------------
-    cout << "\n\t1. Negatia";
-    Set(2, 3, 10, 0, 0);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c not A %4c", 186, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        printf("\n%c %d %c %5d %4c", 186, a, 179, !a, 186);
+        case 2: printf("\n%c A %c B %c A and B %2c", 186, 179, 179, 186);
+        break;
+        case 3: printf("\n%c A %c B %c A or B %3c", 186, 179, 179, 186);
+        break;
+        case 4: printf("\n%c A %c B %c A - B %4c", 186, 179, 179, 186);
+        break;
+        case 5: printf("\n%c A %c B %c A -> B %3c", 186, 179, 179, 186);
+        break;
+        case 6: printf("\n%c A %c B %c A <-> B %2c", 186, 179, 179, 186);
+        break;
+        case 7: printf("\n%c A %c B %c A nand B %c", 186, 179, 179, 186);
+        break;
+        case 8: printf("\n%c A %c B %c A nor B %2c", 186, 179, 179, 186);
+        break;
     }
-    Line(200, 205, 207, 188);
 
-    // ---------------- 2. Conjunctia ----------------
-    cout << "\n\t2. Conjunctia";
-    Set(3, 3, 3, 10, 0);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c A and B %2c", 186, 179, 179, 186);
     Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            printf("\n%c %d %c %d %c %5d %4c", 186, a, 179, b, 179, a & b, 186);
-        }
-    }
-    Line(200, 205, 207, 188);
-
-    // ---------------- 3. Disjunctia ----------------
-    cout << "\n\t3. Disjunctia";
-    Set(3, 3, 3, 9, 0);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c A or B %2c", 186, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            printf("\n%c %d %c %d %c %4d %4c", 186, a, 179, b, 179, a | b, 186);
-        }
-    }
-    Line(200, 205, 207, 188);
-
-    // ---------------- 4. Diferenta (2) ----------------
-    cout << "\n\t4. Diferenta (2)";
-    Set(4, 3, 3, 7, 8);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c A - B %c B - A %2c", 186, 179, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            printf("\n%c %d %c %d %c %5d %c %3d %4c", 186, a, 179, b, 179, a & (!b), 179, (!a) & b, 186);
-        }
-    }
-    Line(200, 205, 207, 188);
-
-    // ---------------- 5. Implicatia ----------------
-    cout << "\n\t5. Implicatia";
-    Set(3, 3, 3, 9, 0);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c A => B %2c", 186, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            printf("\n%c %d %c %d %c %4d %4c", 186, a, 179, b, 179, (!a) | b, 186);
-        }
-    }
-    Line(200, 205, 207, 188);
-
-    // ---------------- 6. Echivalenta ----------------
-    cout << "\n\t6. Echivalenta";
-    Set(3, 3, 3, 10, 0);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c A <=> B %2c", 186, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            printf("\n%c %d %c %d %c %5d %4c", 186, a, 179, b, 179, a == b, 186);
-        }
-    }
-    Line(200, 205, 207, 188);
-
-    // ---------------- 7. Conectori (Sheffer, Pirce) ----------------
-    cout << "\n\t7. Conectori (Sheffer, Pirce)";
-    Set(4, 3, 3, 17, 16);
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c A | B (Sheffer) %c A ! B (Pirce) %2c", 186, 179, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            printf("\n%c %d %c %d %c %15d %c %11d %4c", 186, a, 179, b, 179, !(a & b), 179, !(a | b), 186);
-        }
-    }
-    Line(200, 205, 207, 188);
-
-  // ---------------- 9. Problema simpla (3 variabile) ----------------
-    cout << "\n\n\t9. Problema logica cu 3 variabile";
-    cout << "\n     F = (A && B) || !C";
-    nc = 4; w[0] = 3; w[1] = 3; w[2] = 3; w[3] = 5;
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c C %c  F  %c", 186, 179, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            for (c = 0; c <= 1; c++) {
-                printf("\n%c %d %c %d %c %d %c  %d  %c", 186, a, 179, b, 179, c, 179, (a && b) || !c, 186);
+    for(a=0; a<=1; a++)
+    {
+        for(b=0; b<=1; b++)
+        {
+            switch(key)
+            {
+                case 2: rez = a&b; break;
+                case 3: rez = a|b; break;
+                case 4: rez = a&!b; break;
+                case 5: rez = (!a)|b; break;
+                case 6: rez = (a==b); break;
+                case 7: rez = !(a&b); break;
+                case 8: rez = !(a|b); break;
             }
+            printf("\n%c %d %c %d %c %5d %4c ", 186, a, 179, b, 179, rez ,186);
         }
     }
-    Line(200, 205, 207, 188);
- 
-    // ---------------- 10. Problema generala (4 variabile) ----------------
-    cout << "\n\n\t10. Problema logica cu 4 variabile";
+    Line(200,205,207,188);
+}
+
+// 9. Problema usoara (3-4 variabile)
+void ProblemaUsoara()
+{
+    unsigned a, b, c, d, rez;
+
+    cout << "\n\n\t9. Problema usoara (4 variabile)";
     cout << "\n     F = (A || B) && (!C || D)";
-    nc = 5; w[0] = 3; w[1] = 3; w[2] = 3; w[3] = 3; w[4] = 5;
-    Line(201, 205, 209, 187);
-    printf("\n%c A %c B %c C %c D %c  F  %c", 186, 179, 179, 179, 179, 186);
-    Line(199, 196, 197, 182);
-    for (a = 0; a <= 1; a++) {
-        for (b = 0; b <= 1; b++) {
-            for (c = 0; c <= 1; c++) {
-                for (d = 0; d <= 1; d++) {
-                    printf("\n%c %d %c %d %c %d %c %d %c  %d  %c", 186, a, 179, b, 179, c, 179, d, 179, (a || b) && (!c || d), 186);
+
+    Line(201,205,209,187, 4, 17);
+    printf("\n%c A %c B %c C %c D %c (A||B)&&(!C||D) %c", 186, 179, 179, 179, 179, 186);
+    Line(199,196,197,182, 4, 17);
+    for(a=0; a<=1; a++)
+    {
+        for(b=0; b<=1; b++)
+        {
+            for(c=0; c<=1; c++)
+            {
+                for(d=0; d<=1; d++)
+                {
+                    rez = (a || b) && (!c || d);
+                    printf("\n%c %d %c %d %c %d %c %d %c%9d%9c", 186, a, 179, b, 179, c, 179, d, 179, rez, 186);
                 }
             }
         }
     }
-    Line(200, 205, 207, 188);
- 
+    Line(200,205,207,188, 4, 17);
+}
+
+// 10. Problema grea (generala, mai mult de 4 variabile)
+void ProblemaGrea()
+{
+    unsigned a, b, c, d, e, rez;
+
+    cout << "\n\n\t10. Problema grea (5 variabile)";
+    cout << "\n     F = (A || B) && (!C || D) && (E || !A)";
+
+    Line(201,205,209,187, 5, 26);
+    printf("\n%c A %c B %c C %c D %c E %c (A||B)&&(!C||D)&&(E||!A) %c", 186, 179, 179, 179, 179, 179, 186);
+    Line(199,196,197,182, 5, 26);
+    for(a=0; a<=1; a++)
+    {
+        for(b=0; b<=1; b++)
+        {
+            for(c=0; c<=1; c++)
+            {
+                for(d=0; d<=1; d++)
+                {
+                    for(e=0; e<=1; e++)
+                    {
+                        rez = (a || b) && (!c || d) && (e || !a);
+                        printf("\n%c %d %c %d %c %d %c %d %c %d %c%13d%14c", 186, a, 179, b, 179, c, 179, d, 179, e, 179, rez, 186);
+                    }
+                }
+            }
+        }
+    }
+    Line(200,205,207,188, 5, 26);
+}
+
+int main()
+{
+    system("color F0");
+
+    unsigned a;
+
+    cout << "Project #1, developed by Vangeli Bogdan" << endl;
+
+    cout << "Topic: Operations with multiple logical sockets." << endl;
+
+    cout << " 1. Negatia" << endl;
+
+    Line(201,205,209,187, 1);
+    printf("\n%c A %c not A %4c", 186, 179, 186);
+    Line(199,196,197,182, 1);
+    for(a=0; a<=1; a++)
+    {
+        printf("\n%c %d %c %5d %4c", 186, a, 179, !a, 186);
+    }
+    Line(200,205,207,188, 1);
+
+    OperatiiBinare(2);
+    OperatiiBinare(3);
+    OperatiiBinare(4);
+    OperatiiBinare(5);
+    OperatiiBinare(6);
+    OperatiiBinare(7);
+    OperatiiBinare(8);
+
+    ProblemaUsoara();
+    ProblemaGrea();
+
+    cout << endl;
     return 0;
 }
