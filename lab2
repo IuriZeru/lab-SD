@@ -1,1 +1,35 @@
+#include <iostream>
+#include <iomanip>
+#define NMAX 20
+typedef long long unsigned llu;
+using namespace std;
+//Iterativ
+llu Factorial(llu n) {
+     llu i, p = 1;
+     for(i=2; i<=n; i++)
+        p  *= i;
+        return p;
+
+}
+llu FactorialRecursiv(llu n) {
+    if(n<=1)
+        return 1;
+    return FactorialRecursiv(n-1)*n;
+
+}
+
+int main()
+{
+    system("color F0");
+    int n=6, k=3;
+    //citirea datelor
+
+    cout <<"Proiect nr. 2, ...!"<< endl;
+    //cout << n <<"!="<<Factorial(n);
+    for(llu i=1; i<=NMAX; i++) {
+        cout<<setw(5) << i<<"!="<<setw(16)<<Factorial(i);
+        if(i % 5 ==0)cout<<endl;
+    }
+    return 0;
+}
 
