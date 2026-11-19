@@ -106,5 +106,23 @@ int main()
     OperatiiBinare(9);
     OperatiiBinare(10);
     OperatiiBinare(11);
+
     return 0;
 }
+
+ /* problema simpla
+rez = (a || b) && (!c || d)
+Bogdan Vangheli din grupa IS11Z vrea să participe la un concurs online de programare (F = 1). El poate participa doar dacă:
+are pe ce să lucreze: A = are laptop personal, B = poate folosi calculatorul din laboratorul facultatii (A or B);
+și nu are probleme cu internetul: C = internetul este instabil, D = are hotspot pe telefon (not C or D).
+Dacă nu are nici laptop, nici acces la calculatorul facultatii, nu poate participa, chiar dacă internetul merge perfect.
+Dacă internetul este instabil și nu are hotspot, nu poate participa, chiar dacă are ambele calculatoare. */
+
+/* problema generala
+rez = (a || b) && (!c || d) && (e || !a)
+Bogdan Vangheli din grupa IS11Z participă din nou la un concurs online de programare (F = 1). Acum sunt trei condiții și el poate participa doar dacă:
+are pe ce să lucreze: A = lucrează cu laptopul personal, B = lucrează la calculatorul din laborator (A or B);
+și nu are probleme cu internetul: C = internetul este instabil, D = are hotspot pe telefon (not C or D);
+și, dacă lucrează cu laptopul, acesta trebuie să fie pregătit: E = laptopul este încărcat (E or not A).
+Dacă lucrează cu laptopul descărcat, nu poate participa, chiar dacă internetul merge bine.
+Dacă lucrează la calculatorul din laborator (A = 0), starea laptopului nu mai contează. */
